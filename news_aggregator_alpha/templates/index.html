@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>News aggregator</title>
+        <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
+    </head>
+    <h1>News aggregator</h1>
+    <div>
+        <h2>Russia / Ukraine</h2>
+        {% for article in articles %}
+            <li>
+                <a href="{{article.url}}">{{article.title}}</a> - {{article.date}} - Source: {{article.source}}
+            </li>
+        {% endfor %}
+    </div>
+
+</html>
