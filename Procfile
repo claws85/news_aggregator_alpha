@@ -1,1 +1,1 @@
-web: gunicorn news_aggregator_alpha.config.wsgi
+web: gunicorn config.wsgi
