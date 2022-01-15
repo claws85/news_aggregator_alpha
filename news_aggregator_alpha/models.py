@@ -4,8 +4,8 @@ from django.db.models.fields import DateField, URLField
 
 
 class Article(models.Model):
-    title = models.CharField(max_length=200)
-    url = URLField()
+    title = models.CharField(max_length=200, unique=True)
+    url = URLField(unique=True)
     source = models.CharField(max_length=200)
     date = DateField(auto_now_add=True)
     keywords = models.CharField(max_length=200)
