@@ -16,6 +16,8 @@ class NewsGatherer(object):
         self.countries = countries_param
         self.search_terms = search_terms_param
         self.pages = pages
+        self.titles_list = []
+        self.links_list = []
 
     def update_needed(self):
         try:
@@ -52,22 +54,36 @@ class NewsGatherer(object):
         )
         
     def create_articles(self, json):
-        titles_set = set()
 
         for article in json.get('results'):
             if not article.get('title'):
                 logger.warn("Article had no title, so was ommitted.")
                 continue
 
-            if article.get('title') in titles_set:
+            article = self.manage_lengths(article)
+
+            if (
+                    article.get('title') in self.titles_list or
+                    article.get('link') in self.links_list
+            ):
                 continue
-            titles_set.add(article.get('title'))
+
+            self.titles_list.append(article.get('title'))
+            self.links_list.append(article.get('link'))
             
             self.create_article(article)
 
+    @staticmethod
+    def manage_lengths(article):
+        if len(article.get('title')) > 200: 
+            article['title'] = article.get('title')[:200]
+        if len(article.get('link')) > 200:
+            article['link'] = article.get('link')[:200]
+
+        return article
     
     @transaction.atomic
-    def create_article(self, article):
+    def create_article(self, article):       
 
         try:
             Article.objects.create(
