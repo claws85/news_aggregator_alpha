@@ -1,7 +1,6 @@
 
 from datetime import date, datetime, timedelta
 import logging
-from turtle import st
 import pyshorteners
 import requests
 import time
