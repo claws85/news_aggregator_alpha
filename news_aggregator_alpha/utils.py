@@ -1,6 +1,7 @@
 
 from datetime import date, datetime, timedelta
 import logging
+from turtle import st
 import pyshorteners
 import requests
 import time
@@ -114,24 +115,26 @@ class NewsGatherer(object):
         )
 
     @staticmethod
-    def return_articles_by_keywords(keywords):
+    def return_todays_articles_by_keywords(keywords):
         return Article.objects.filter(
-            keywords=keywords
+            keywords=keywords,
+            date__gte=date.today()
         )
     
     @staticmethod
-    def return_articles_by_first_keyword(first_keyword):
+    def return_todays_articles_by_first_keyword(first_keyword):
         return Article.objects.filter(
-            keywords__startswith=first_keyword
+            keywords__startswith=first_keyword,
+            date__gte=date.today()
         )
-    
+        
     def check_sufficient_articles(self):
         count = 0
         while count < 5:
             
             if (
-                self.return_articles_by_keywords(self.search_terms).count()
-                < 10
+                self.return_todays_articles_by_keywords(self.search_terms).count()
+                == 10
             ):
                 break
             else:

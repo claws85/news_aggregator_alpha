@@ -25,7 +25,7 @@ class IndexView(View):
             dict_list.append(
                 {
                     GROUP_TITLES.get(s) :
-                    NewsGatherer.return_articles_by_first_keyword(s)
+                    NewsGatherer.return_todays_articles_by_first_keyword(s)
                 }
             )
 
