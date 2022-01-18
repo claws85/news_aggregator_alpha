@@ -111,3 +111,24 @@ if os.environ['DJANGO_SETTINGS_MODULE'] == 'config.settings.development':
     API_KEY = NEWS_API_KEY
 else:
     API_KEY = os.environ['API_KEY']
+
+# NEWS TOPICS
+KEYWORDS = [
+    'russia ukraine',
+    'iran united states',
+    'iran nuclear',
+    'iran sanctions',
+    'china aggression',
+    'china south sea',
+    'china taiwan'
+]
+
+SINGLE_ISSUE_TOPICS = [
+    'russia ukraine'
+]
+
+GROUP_TITLES = {
+    'russia' : 'Russia Ukraine situation',
+    'china' : 'China: aggression, Taiwan, South China Sea',
+    'iran' : 'Iran: US relations, Sanctions, Nuclear deal'
+}

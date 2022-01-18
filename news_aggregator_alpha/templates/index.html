@@ -8,11 +8,15 @@
     </head>
     <h1>News aggregator</h1>
     <div>
-        <h2>Russia / Ukraine</h2>
-        {% for article in articles %}
-            <li>
-                <a href="{{article.url}}">{{article.title}}</a> - {{article.date}} - Source: {{article.source}}
-            </li>
+        {% for art_dict in d_list %}
+            {% for key, value in art_dict.items %}
+                <h2>{{key}}</h2>
+                {% for article in value %}
+                    <li>
+                    <a href="{{article.url}}">{{article.title}}</a> - {{article.date}} - Source: {{article.source}}
+                    </li>
+                {% endfor %}
+            {% endfor %}
         {% endfor %}
     </div>
 
