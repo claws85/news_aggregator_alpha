@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from news_aggregator_alpha.views import IndexView
+from news_aggregator_alpha.views import HomeView, ArchiveView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', IndexView.as_view())
+    path('', HomeView.as_view(), name='home'),
+    path('archive/', ArchiveView.as_view(), name='archive')
 ]

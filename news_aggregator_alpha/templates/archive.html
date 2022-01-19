@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>News aggregator</title>
+        <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
+    </head>
+    <h1>News aggregator - Archive</h1>
+    <div>
+        <a href="{% url 'home' %}">Go to home page</a>
+    </div>
+    <div>
+        {% for date_dict in d_list %}
+            {% for key, value in date_dict.items %}
+                <h2>{{key}}</h2>
+                    {% for k, v in value.items %}
+                        <h3>{{k}}</h3>
+                        {% for article in v %}
+                           <li>
+                               <a href="{{article.url}}">{{article.title}}</a> - {{article.date}} - Source: {{article.source}}
+                            </li>
+                            {% endfor %}
+                    {% endfor %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+</html>

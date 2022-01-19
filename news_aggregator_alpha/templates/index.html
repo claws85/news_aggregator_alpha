@@ -6,8 +6,12 @@
         <title>News aggregator</title>
         <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
     </head>
-    <h1>News aggregator</h1>
+    <h1>News aggregator - Home</h1>
     <div>
+        <a href="{% url 'archive' %}">Go to seven-day archive</a>
+    </div>
+    <div>
+        <h2>Today's articles</h2>
         {% for art_dict in d_list %}
             {% for key, value in art_dict.items %}
                 <h2>{{key}}</h2>
@@ -19,5 +23,4 @@
             {% endfor %}
         {% endfor %}
     </div>
-
 </html>
